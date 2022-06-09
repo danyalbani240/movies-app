@@ -1,6 +1,7 @@
 <template>
   <div>
     <HomeSearch />
+    <HomeMoviesList />
   </div>
 </template>
 
