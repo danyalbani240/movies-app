@@ -1,4 +1,8 @@
-<template></template>
+<template>
+  <div>
+    <HomeSearch />
+  </div>
+</template>
 
 <script>
 export default {
