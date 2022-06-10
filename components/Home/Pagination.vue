@@ -1,16 +1,71 @@
 <template>
   <div class="pagination-container mb-10">
     <div class="h-10 flex items-center justify-center">
-      <p class="prev cursor-pointer font-bold">Previous Page</p>
+      <p
+        @click="goPrevPage"
+        :class="{
+          'text-neutral-active cursor-pointer':
+            typeof +this.$route.query.page === 'number' &&
+            +this.$route.query.page !== 1,
+          'passive cursor-default':
+            this.$route.query.page === undefined ||
+            +this.$route.query.page === 1,
+        }"
+        class="prev font-bold"
+      >
+        Previous Page
+      </p>
       <span class="pagination-separator"></span>
-      <p class="next cursor-pointer font-bold text-neutral-active">Next Page</p>
+      <p
+        @click="goNextPage"
+        class="next cursor-pointer font-bold text-neutral-active"
+      >
+        Next Page
+      </p>
     </div>
-    <p class="mt-3.5 results text-center">Showing results 1-20</p>
+    <p class="mt-3.5 results text-center">
+      Showing results
+      {{
+        this.$route.query.page === undefined
+          ? 1
+          : (+this.$route.query.page - 1) * 20 + 1
+      }}-{{
+        this.$route.query.page === undefined ? 20 : +this.$route.query.page * 20
+      }}
+    </p>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    goNextPage() {
+      this.$router.push({
+        path: this.$route.path,
+        query: {
+          page:
+            this.$route.query.page === undefined
+              ? 2
+              : +this.$route.query.page + 1,
+        },
+      })
+    },
+    goPrevPage() {
+      if (
+        this.$route.query.page === undefined ||
+        +this.$route.query.page === 1
+      ) {
+        return
+      }
+      this.$router.push({
+        path: this.$route.path,
+        query: {
+          page: +this.$route.query.page - 1,
+        },
+      })
+    },
+  },
+}
 </script>
 
 <style>
@@ -24,6 +79,8 @@ export default {}
 }
 .prev {
   margin-right: 30px;
+}
+.prev.passive {
   color: rgba(0, 0, 0, 0.48);
 }
 .next {
