@@ -4,10 +4,10 @@
       <p
         @click="goPrevPage"
         :class="{
-          'text-neutral-active cursor-pointer':
+          'text-neutral-active cursor-pointer transition hover:text-black':
             typeof +this.$route.query.page === 'number' &&
             +this.$route.query.page !== 1,
-          'passive cursor-default':
+          'passive cursor-not-allowed ':
             this.$route.query.page === undefined ||
             +this.$route.query.page === 1,
         }"
@@ -18,7 +18,7 @@
       <span class="pagination-separator"></span>
       <p
         @click="goNextPage"
-        class="next cursor-pointer font-bold text-neutral-active"
+        class="next cursor-pointer font-bold text-neutral-active transition hover:text-black"
       >
         Next Page
       </p>

@@ -4,15 +4,23 @@
   >
     <form autocomplete="off">
       <input type="text" class="hidden" autocomplete="off" />
-      <label for="search">Search by release date:</label>
-      <input class="pl-2" type="text" id="search" />
+      <div class="inline-flex">
+        <label for="search">Search by release date:</label>
+        <Datepicker lang="en" :range="true" v-model="date" />
+      </div>
       <button class="text-white bg-neutral-blue search-button">Search</button>
     </form>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      date: [],
+    }
+  },
+}
 </script>
 
 <style>
@@ -23,12 +31,23 @@ export default {}
 .search-container form label {
   margin-left: 81px;
 }
-.search-container form input {
+
+.v-calendar .input-field.long {
+  max-width: 221px;
+  max-height: 33px;
   margin-left: 29px;
-  width: 221px;
-  height: 33px;
-  border: 1px solid #cfcfcf;
+  max-width: 221px;
+  min-width: 221px !important;
 }
+
+.v-calendar .input-field.long input {
+  max-width: 221px;
+  max-height: 33px;
+  max-width: 221px;
+  border: 1px solid #cfcfcf;
+  border-radius: 0 !important;
+}
+
 .search-button {
   width: 74px;
   height: 33px;
