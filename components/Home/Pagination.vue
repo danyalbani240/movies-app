@@ -43,6 +43,7 @@ export default {
       this.$router.push({
         path: this.$route.path,
         query: {
+          ...this.$route.query,
           page:
             this.$route.query.page === undefined
               ? 2
@@ -60,6 +61,7 @@ export default {
       this.$router.push({
         path: this.$route.path,
         query: {
+          ...this.$route.query,
           page: +this.$route.query.page - 1,
         },
       })
