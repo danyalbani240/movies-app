@@ -2,7 +2,7 @@
   <div>
     <HomeSearch />
     <HomeMoviesList :movies="movies" />
-    <HomePagination />
+    <HomePagination :totalPages="totalPages" />
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
     return {
       page: 1,
       movies: [],
+      totalPages: 0,
     }
   },
   watch: {
@@ -35,6 +36,7 @@ export default {
     const results = await this.$axios.$get(url)
     this.movies = results.results
     this.page = results.page
+    this.totalPages = results.total_pages
   },
 }
 </script>

@@ -18,7 +18,11 @@
       <span class="pagination-separator"></span>
       <p
         @click="goNextPage"
-        class="next cursor-pointer font-bold text-neutral-active transition hover:text-black"
+        class="next cursor-pointer font-bold transition"
+        :class="{
+          'passive cursor-not-allowed': isItLastPage,
+          'hover:text-black text-neutral-active ': !isItLastPage,
+        }"
       >
         Next Page
       </p>
@@ -38,8 +42,12 @@
 
 <script>
 export default {
+  props: ['totalPages'],
   methods: {
     goNextPage() {
+      if (this.isItLastPage) {
+        return
+      }
       this.$router.push({
         path: this.$route.path,
         query: {
@@ -67,6 +75,15 @@ export default {
       })
     },
   },
+  computed: {
+    isItLastPage() {
+      if (this.totalPages === +this.$route.query.page) {
+        return true
+      } else {
+        return false
+      }
+    },
+  },
 }
 </script>
 
@@ -83,6 +100,9 @@ export default {
   margin-right: 30px;
 }
 .prev.passive {
+  color: rgba(0, 0, 0, 0.48);
+}
+.next.passive {
   color: rgba(0, 0, 0, 0.48);
 }
 .next {
