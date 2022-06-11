@@ -7,6 +7,7 @@
       v-for="(movie, index) in convertedMovies"
       :key="movie.id"
       :tags="movie.genre"
+      :id="movie.id"
     />
   </div>
 </template>
