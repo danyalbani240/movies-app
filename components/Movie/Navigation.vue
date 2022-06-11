@@ -3,7 +3,7 @@
     class="w-full bg-neutral-gray search-container rounded-md flex items-center"
   >
     <button
-      @click="$router.push({ path: '/' })"
+      @click="$router.go(-1)"
       class="text-white bg-neutral-blue rounded-full flex items-center justify-center"
     >
       <img src="../../assets/left-arrow.svg" alt="left" />

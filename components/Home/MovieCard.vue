@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="{ name: 'movie', params: { movie: id } }">
+  <NuxtLink :to="{ name: 'movie-id', params: { id: id } }">
     <div class="movie-card bg-neutral-slate rounded-md flex cursor-pointer">
       <img
         :src="'https://image.tmdb.org/t/p/w500/' + cover"
