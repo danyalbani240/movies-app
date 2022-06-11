@@ -13,7 +13,7 @@ module.exports = {
         'neutral-gray': '#E2E2E2',
         'neutral-slate': '#F1F1F1',
         'neutral-active': '#318FE7',
-        'neutral-blue': '#318FE7',
+        'neutral-blue': '#549DF2',
       },
     },
   },
