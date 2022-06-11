@@ -3,16 +3,25 @@
     <div class="credit">
       <p class="text-black font-bold text-lg ml-1">Credit:</p>
       <p class="mt-3 text-sm">
-        Zoe Saldanna , Vin Diesel , Chris Pratt , Bradley Cooper , Lee Pace ,
-        Zoe Saldanna , Vin Diesel , Chris Pratt , Bradley Cooper , Lee Pace and
-        19 more.
+        {{ creditDisplayText }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['credits'],
+  computed: {
+    creditDisplayText() {
+      let firstTen = []
+      for (let index = 0; index < 10; index++) {
+        firstTen.push(this.credits[index].name)
+      }
+      return `${firstTen.join(' , ')} and ${this.credits.length - 10} more`
+    },
+  },
+}
 </script>
 
 <style>

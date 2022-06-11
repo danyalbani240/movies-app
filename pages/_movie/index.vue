@@ -1,22 +1,47 @@
 <template>
   <div>
-    <MovieNavigation />
-    <MovieLeadSection />
+    <MovieNavigation :title="movie.title" :tagline="movie.tagline" />
+    <MovieLeadSection
+      v-if="movie !== []"
+      :posterPath="movie.belongs_to_collection.poster_path"
+      :budget="movie.budget"
+      :revenue="movie.revenue"
+      :releaseDate="movie.release_date"
+      :runtime="movie.runtime"
+      :score="{
+        vote_average: movie.vote_average,
+        vote_count: movie.vote_count,
+      }"
+      :genres="movie.genres"
+      :homePage="movie.homepage"
+      :imdb="movie.imdb_id"
+    />
     <p class="description">
-      Light years from Earth, 26 years after being abducted, Peter Quill finds
-      himself the prime target of a manhunt after discovering an orb wanted by
-      Ronan the Accuser. Light years from Earth, 26 years after being abducted,
-      Peter Quill finds himself the prime target of a manhunt after discovering
-      an orb wanted by Ronan the Accuser. Light years from Earth, 26 years after
-      being abducted, Peter Quill finds himself the prime target of a manhunt
-      after discovering an orb wanted by Ronan the Accuser.
+      {{ movie.overview }}
     </p>
-    <MovieCredit />
+    <MovieCredit :credits="credits" />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      movie: {},
+      credits: {},
+    }
+  },
+  async fetch() {
+    this.movie = await this.$axios.$get(
+      `https://api.themoviedb.org/3/movie/${this.$route.params.movie}?api_key=${process.env.apiKey}`
+    )
+    this.credits = await this.$axios
+      .$get(
+        `https://api.themoviedb.org/3/movie/${this.$route.params.movie}/credits?api_key=${process.env.apiKey}`
+      )
+      .then((data) => data.cast)
+  },
+}
 </script>
 
 <style>
