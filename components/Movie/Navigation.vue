@@ -10,14 +10,16 @@
       Back
     </button>
     <div class="ml-16">
-      <p class="text-lg font-bold">Guardians of the Galaxy</p>
-      <p class="text-lg">All heroes start somewhere.</p>
+      <p class="text-lg font-bold">{{ title }}</p>
+      <p class="text-lg">{{ tagline }}</p>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['title', 'tagline'],
+}
 </script>
 
 <style scoped>
