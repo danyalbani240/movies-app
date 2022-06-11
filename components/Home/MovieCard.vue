@@ -11,12 +11,12 @@
           <img src="../../assets/calender-icon.svg" alt="calender" />
           {{ release_date }}
         </p>
-        <!-- <div class="genere-list flex flex-wrap items-center">
+        <div class="genere-list flex flex-wrap items-center">
           <p v-for="tag in tags" class="text-xs flex items-center flex-wrap">
             <span>{{ tag }}</span
             ><span class="seperator rounded-full"></span>
           </p>
-        </div> -->
+        </div>
       </div>
     </div>
   </NuxtLink>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  props: ['title', 'release_date', 'cover', 'id'],
+  props: ['title', 'release_date', 'cover', 'id', 'tags'],
 }
 </script>
 
