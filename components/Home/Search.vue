@@ -2,7 +2,7 @@
   <div
     class="w-full bg-neutral-gray search-container rounded-md flex items-center"
   >
-    <form autocomplete="off">
+    <form autocomplete="off" @submit.prevent="handleSearch">
       <input type="text" class="hidden" autocomplete="off" />
       <div class="inline-flex">
         <label for="search">Search by release date:</label>
@@ -20,6 +20,22 @@ export default {
       date: [],
     }
   },
+  methods: {
+    handleSearch(e) {
+      this.$router.push({
+        path: this.$route.path,
+        query: {
+          page: 1,
+          startDate: new Date(Date.parse(this.date[0]))
+            .toISOString()
+            .split('T')[0],
+          endDate: new Date(Date.parse(this.date[1]))
+            .toISOString()
+            .split('T')[0],
+        },
+      })
+    },
+  },
 }
 </script>
 
@@ -32,10 +48,14 @@ export default {
   margin-left: 81px;
 }
 
+.v-calendar {
+  max-width: 221px;
+  min-width: 221px !important;
+  margin-left: 29px;
+}
 .v-calendar .input-field.long {
   max-width: 221px;
   max-height: 33px;
-  margin-left: 29px;
   max-width: 221px;
   min-width: 221px !important;
 }
