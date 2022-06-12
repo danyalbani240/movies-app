@@ -47,12 +47,8 @@ export default {
   env: {
     apiKey: 'f62f750b70a8ef11dad44670cfb6aa57',
   },
-  router: {
-    scrollBehavior: function (to, from, savedPosition) {
-      return { x: 0, y: 0, behavior: 'smooth' }
-    },
-  },
-  transition: {
+  router: {},
+  pageTransition: {
     name: 'page',
     mode: 'out-in',
   },
