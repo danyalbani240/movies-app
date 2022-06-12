@@ -37,7 +37,6 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit(context, nuxtContext) {
-    //get the first movies by url queries
     let url = ''
     if (
       nuxtContext.query.startDate === undefined &&
@@ -48,18 +47,7 @@ export const actions = {
       url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apiKey}&page=${nuxtContext.query.page}&primary_release_date.lte=${nuxtContext.query.endDate}&primary_release_date.gte=${nuxtContext.query.startDate}`
     }
 
-    //   const results = await this.$axios.$get(url)
-    //   this.movies = results.results
-    //   this.page = results.page
-    //   this.totalPages = results.total_pages
-    await nuxtContext.$axios
-      .$get(url)
-      .then((res) => {
-        context.commit('setMovies', res.results)
-        context.commit('setPage', res.page)
-        context.commit('setTotalPages', res.total_pages)
-      })
-      .catch((e) => console.log(e))
+    await context.dispatch('getMovies', url).catch((e) => console.log(e))
     //getting the genres
     await nuxtContext.$axios
       .$get(
@@ -71,8 +59,8 @@ export const actions = {
       })
       .catch((e) => console.log(e))
   },
-  async updateMovies(context, url) {
-    await axios.get(url).then((res) => {
+  async getMovies(context, url) {
+    return axios.get(url).then((res) => {
       context.commit('setMovies', res.data.results)
       context.commit('setPage', res.data.page)
       context.commit('setTotalPages', res.data.total_pages)
