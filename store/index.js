@@ -63,6 +63,9 @@ export const actions = {
       context.commit('setMovies', res.results)
       context.commit('setPage', res.page)
       context.commit('setTotalPages', res.total_pages)
+      if (context.state.allGenres.length >= 1) {
+        context.commit('setMoviesGenres')
+      }
     })
   },
 }
