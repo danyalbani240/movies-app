@@ -1,28 +1,30 @@
 <template>
-  <div class="movie-card bg-neutral-slate rounded-md flex cursor-pointer">
-    <img
-      :src="'https://image.tmdb.org/t/p/w500/' + cover"
-      class="card-cover h-full rounded-l-md bg-red-300"
-    />
-    <div class="card-details">
-      <h2 class="movie-name text-base font-bold">{{ title }}</h2>
-      <p class="movie-date flex items-center text-xs">
-        <img src="../../assets/calender-icon.svg" alt="calender" />
-        {{ release_date }}
-      </p>
-      <div class="genere-list flex flex-wrap items-center">
-        <p v-for="tag in tags" class="text-xs flex items-center flex-wrap">
-          <span>{{ tag }}</span
-          ><span class="seperator rounded-full"></span>
+  <NuxtLink :to="{ name: 'movie-id', params: { id: id } }">
+    <div class="movie-card bg-neutral-slate rounded-md flex cursor-pointer">
+      <img
+        :src="'https://image.tmdb.org/t/p/w500/' + cover"
+        class="card-cover h-full rounded-l-md bg-red-300"
+      />
+      <div class="card-details">
+        <h2 class="movie-name text-base font-bold">{{ title }}</h2>
+        <p class="movie-date flex items-center text-xs">
+          <img src="../../assets/calender-icon.svg" alt="calender" />
+          {{ release_date }}
         </p>
+        <div class="genere-list flex flex-wrap items-center">
+          <p v-for="tag in tags" class="text-xs flex items-center flex-wrap">
+            <span>{{ tag }}</span
+            ><span class="seperator rounded-full"></span>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script>
 export default {
-  props: ['title', 'release_date', 'cover', 'tags'],
+  props: ['title', 'release_date', 'cover', 'id', 'tags'],
 }
 </script>
 

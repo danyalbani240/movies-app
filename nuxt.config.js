@@ -15,7 +15,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~/assets/style.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/date-picker.js'],
@@ -44,4 +44,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  env: {
+    apiKey: 'f62f750b70a8ef11dad44670cfb6aa57',
+  },
+  router: {},
+  pageTransition: {
+    name: 'page',
+    mode: 'out-in',
+  },
 }

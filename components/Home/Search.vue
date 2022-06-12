@@ -6,7 +6,13 @@
       <input type="text" class="hidden" autocomplete="off" />
       <div class="inline-flex">
         <label for="search">Search by release date:</label>
-        <Datepicker lang="en" :range="true" v-model="date" />
+        <Datepicker
+          lang="en"
+          :range="true"
+          v-model="date"
+          show-clear-button
+          @reset="resetDate"
+        />
       </div>
       <button class="text-white bg-neutral-blue search-button">Search</button>
     </form>
@@ -17,11 +23,26 @@
 export default {
   data() {
     return {
-      date: [],
+      date: [
+        this.$route.query.startDate != undefined
+          ? this.$route.query.startDate
+          : null,
+        this.$route.query.endDate != undefined
+          ? this.$route.query.endDate
+          : null,
+      ],
     }
   },
   methods: {
     handleSearch(e) {
+      if (
+        this.date[0] === undefined ||
+        this.date[1] === null ||
+        this.date[0] === null
+      ) {
+        this.$router.push('/')
+        return
+      }
       this.$router.push({
         path: this.$route.path,
         query: {
@@ -34,6 +55,10 @@ export default {
             .split('T')[0],
         },
       })
+    },
+    resetDate() {
+      this.date[0] = undefined
+      this.date[1] = undefined
     },
   },
 }

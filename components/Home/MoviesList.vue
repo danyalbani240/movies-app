@@ -4,9 +4,10 @@
       :title="movie.title"
       :release_date="movie.release_date"
       :cover="movie.poster_path"
-      v-for="(movie, index) in convertedMovies"
+      v-for="(movie, index) in movies"
       :key="movie.id"
-      :tags="movie.genre"
+      :id="movie.id"
+      :tags="moviesGenres[index]"
     />
   </div>
 </template>
@@ -16,29 +17,25 @@ export default {
   props: ['movies'],
   data() {
     return {
-      genres: [],
+      allGenres: [],
+      moviesGenres: [],
     }
   },
   async fetch() {
-    this.genres = await this.$axios
+    this.allGenres = await this.$axios
       .$get(
         'https://api.themoviedb.org/3/genre/movie/list?api_key=f62f750b70a8ef11dad44670cfb6aa57'
       )
       .then((data) => data.genres)
-  },
-  computed: {
-    // converting genre id_s to genre
-    convertedMovies() {
-      let array = []
-      this.movies.forEach((movie) => {
-        let genre = []
-        for (const genreId of movie.genre_ids) {
-          genre.push(this.genres.find((item) => item.id === genreId).name)
-        }
-        array.push({ ...movie, genre })
-      })
-      return array
-    },
+    //getting genres for movie cards
+    this.movies.forEach((movie) => {
+      const movieGenres = []
+      for (const id of movie.genre_ids) {
+        const genre = this.allGenres.find((genre) => genre.id === id).name
+        movieGenres.push(genre)
+      }
+      this.moviesGenres.push(movieGenres)
+    })
   },
 }
 </script>
