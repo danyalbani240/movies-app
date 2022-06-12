@@ -1,5 +1,5 @@
 # movies-app
-
+deployed on : https://app-movies1.netlify.app/
 ## Build Setup
 
 ```bash
