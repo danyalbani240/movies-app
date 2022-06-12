@@ -1,7 +1,7 @@
 # movies-app
 deployed on : https://app-movies1.netlify.app/
 
-also you can find a version of code that i used vuex on vueX Branch
+also you can find a version of code which i used vuex, on the vueX Branch
 ## Build Setup
 
 ```bash
