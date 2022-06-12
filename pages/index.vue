@@ -16,6 +16,7 @@ export default {
 
   methods: {
     handleQueryChange() {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       let url = ''
       if (
         this.$route.query.startDate === undefined &&
