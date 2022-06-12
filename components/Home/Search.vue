@@ -1,8 +1,12 @@
 <template>
   <div
-    class="w-full bg-neutral-gray search-container rounded-md flex items-center"
+    class="lg:w- mx-auto lg:mx-0 w-11/12 bg-neutral-gray search-container rounded-md flex items-center"
   >
-    <form autocomplete="off" @submit.prevent="handleSearch">
+    <form
+      autocomplete="off"
+      @submit.prevent="handleSearch"
+      class="flex lg:block items-center w-11/12 lg:w-auto justify-between"
+    >
       <input type="text" class="hidden" autocomplete="off" />
       <div class="inline-flex">
         <label for="search">Search by release date:</label>
@@ -98,5 +102,10 @@ export default {
   height: 33px;
   border-radius: 100px;
   margin-left: 392px;
+}
+@media only screen and (max-width: 1024px) {
+  .search-button {
+    margin-left: 0;
+  }
 }
 </style>

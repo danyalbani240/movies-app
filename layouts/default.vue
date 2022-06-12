@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bg-neutral-green w-full h-12"></div>
-    <div class="max-w-5xl mx-auto">
+    <div class="lg:max-w-5xl sm:max-w-3xl mx-auto">
       <nuxt />
     </div>
   </div>

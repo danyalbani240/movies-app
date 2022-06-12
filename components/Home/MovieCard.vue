@@ -64,4 +64,9 @@ export default {
 .genere-list > p:last-child .seperator {
   display: none;
 }
+@media only screen and (max-width: 1024px) {
+  .movie-card {
+    width: auto;
+  }
+} ;
 </style>

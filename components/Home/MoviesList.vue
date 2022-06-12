@@ -1,5 +1,7 @@
 <template>
-  <div class="grid grid-cols-3 movies-list">
+  <div
+    class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 movies-list px-3 md:px-0"
+  >
     <HomeMovieCard
       :title="movie.title"
       :release_date="movie.release_date"
