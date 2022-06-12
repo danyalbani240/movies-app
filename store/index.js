@@ -1,4 +1,3 @@
-import axios from 'axios'
 export const state = () => ({
   movies: [],
   allGenres: [],
@@ -60,10 +59,10 @@ export const actions = {
       .catch((e) => console.log(e))
   },
   async getMovies(context, url) {
-    return axios.get(url).then((res) => {
-      context.commit('setMovies', res.data.results)
-      context.commit('setPage', res.data.page)
-      context.commit('setTotalPages', res.data.total_pages)
+    return this.$axios.$get(url).then((res) => {
+      context.commit('setMovies', res.results)
+      context.commit('setPage', res.page)
+      context.commit('setTotalPages', res.total_pages)
     })
   },
 }
