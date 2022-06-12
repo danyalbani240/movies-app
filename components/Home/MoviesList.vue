@@ -7,7 +7,7 @@
       v-for="(movie, index) in movies"
       :key="movie.id"
       :id="movie.id"
-      :tags="moviesGenres[index]"
+      :tags="movie.genre"
     />
   </div>
 </template>
@@ -15,28 +15,6 @@
 <script>
 export default {
   props: ['movies'],
-  data() {
-    return {
-      allGenres: [],
-      moviesGenres: [],
-    }
-  },
-  async fetch() {
-    this.allGenres = await this.$axios
-      .$get(
-        'https://api.themoviedb.org/3/genre/movie/list?api_key=f62f750b70a8ef11dad44670cfb6aa57'
-      )
-      .then((data) => data.genres)
-    //getting genres for movie cards
-    this.movies.forEach((movie) => {
-      const movieGenres = []
-      for (const id of movie.genre_ids) {
-        const genre = this.allGenres.find((genre) => genre.id === id).name
-        movieGenres.push(genre)
-      }
-      this.moviesGenres.push(movieGenres)
-    })
-  },
 }
 </script>
 
